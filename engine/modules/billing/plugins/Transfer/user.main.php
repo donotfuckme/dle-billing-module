@@ -100,7 +100,11 @@ Class USER extends USER_THEME {
 		}
 	
 		/* PAGE */
+		$get_summ = $_GET['summ'] ? $this->pay_api->bf_convert( $_GET['summ'] ) : $this->plugin_config['minimum'];
+		
 		$this->set_element( "{hash}", $this->hash() );
+		$this->set_element( "{get_summ}", $get_summ );
+		$this->set_element( "{get_summ_valuta}", $this->pay_api->bf_declOfNum( $get_summ ) );
 		$this->set_element( "{minimum}", $this->plugin_config['minimum'] );
 		$this->set_element( "{minimum_valuta}", $this->pay_api->bf_declOfNum( $this->plugin_config['minimum'] ) );
 		$this->set_element( "{commission}", $this->plugin_config['com'] );
