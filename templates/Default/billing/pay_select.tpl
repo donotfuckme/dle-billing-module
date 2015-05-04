@@ -1,9 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#bs_summa").mask("00000");
-});
-</script>
-
 <div class="bt_pay_center">
 	
      <div class="bt_title">1. Способ пополнения:</div>
@@ -39,11 +33,11 @@ $(document).ready(function() {
 				<tr>
 					<td valign="middle">Внести на счёт сумму:</td>
 					<td style="text-align: right">
-						<input type="text" name="bs_summa" class="bs_input" id="bs_summa" size="3" value="10" onkeyup="bs_topay()" />
+						<input type="text" name="bs_summa" class="bs_input" id="bs_summa" size="3" value="{get_summ}" onkeyup="bs_topay()" />
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="padding-top: 5px"><button type="submit" name="submit" class="bs_button" style="width: 100%">Оплатить <span id="bs_pay">10</span> <span id="bs_pay_currency">{module_valuta}</span></button></td>
+					<td colspan="2" style="padding-top: 5px"><button type="submit" name="submit" class="bs_button" style="width: 100%">Оплатить <span id="bs_pay">{get_summ}</span> <span id="bs_pay_currency">{module_valuta}</span></button></td>
 				</tr>
 			</table>
 		
