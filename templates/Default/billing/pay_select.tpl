@@ -1,9 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#bs_summa").mask("00000");
-});
-</script>
-
 <div class="bt_pay_center">
 	
      <div class="bt_title">1. Способ пополнения:</div>
