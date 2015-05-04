@@ -3,7 +3,7 @@
 <form action="" name="Refundform" method="post">
 
 	<center>
-		Сумма перевода: <input type="text" name="bs_summa" class="bs_input" size="3" value="{minimum}" /> {minimum_valuta}, для <input type="text" name="bs_user_name" class="bs_input" size="15" value="{to}" placeholder="логин получателя" /> <button type="submit" name="submit" class="bs_button"><span>Далее</span></button>
+		Сумма перевода: <input type="text" name="bs_summa" class="bs_input" size="3" value="{get_summ}" /> {get_summ_valuta}, для <input type="text" name="bs_user_name" class="bs_input" size="15" value="{to}" placeholder="логин получателя" /> <button type="submit" name="submit" class="bs_button"><span>Далее</span></button>
 
 		<br />
 		<br />

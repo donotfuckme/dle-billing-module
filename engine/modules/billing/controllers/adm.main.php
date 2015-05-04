@@ -18,16 +18,19 @@ Class ADMIN extends ADMIN_THEME {
 	function main() {
 	
 		$content = $this->header();
+
+		/* News */
+		$content .= $this->news();
 		
 		/* Menu */
-		$content = $this->header_start( $this->lang['title'] );
+		$content .= $this->header_start( $this->lang['title'] );
 		
 			$this->T_section( $this->lang['main_settings'], $this->lang['main_settings_desc'], "engine/modules/billing/theme/icons/configure.png", $PHP_SELF."?mod=billing&m=settings" );
 			$this->T_section( $this->lang['main_mail'], $this->lang['main_mail_desc'], "engine/modules/billing/theme/icons/mail.png", $PHP_SELF."?mod=billing&m=mail" );
 
 		$content .= $this->T_parse_section();
 		$content .= $this->header_end();
-		
+
 		/* Paysys */
 		$content .= $this->header_start( $this->lang['main_paysys'] );
 		$content .= $this->T_paysys();
@@ -65,6 +68,7 @@ Class ADMIN extends ADMIN_THEME {
 		$this->T_str_table( $this->lang['settings_status'], $this->lang['settings_status_desc'], $this->T_makeCheckBox("save_con[status]", $this->config['status']) );
 		$this->T_str_table( $this->lang['settings_page'], $this->lang['settings_page_desc'], "<input name=\"save_con[page]\" class=\"edit bk\" type=\"text\" value=\"" . $this->config['page'] ."\" required>.html" );
 		$this->T_str_table( $this->lang['settings_currency'], $this->lang['settings_currency_desc'], "<input name=\"save_con[currency]\" class=\"edit bk\" type=\"text\" value=\"" . $this->config['currency'] ."\" required>" );
+		$this->T_str_table( $this->lang['settings_summ'], $this->lang['settings_summ_desc'], "<input name=\"save_con[summ]\" class=\"edit bk\" type=\"text\" value=\"" . $this->config['summ'] ."\" required>" );
 		$this->T_str_table( $this->lang['settings_redirect'], $this->lang['settings_redirect_desc'], $this->T_makeCheckBox("save_con[redirect]", $this->config['redirect']) );
 		$this->T_str_table( $this->lang['settings_paging'], $this->lang['settings_paging_desc'], "<input name=\"save_con[paging]\" class=\"edit bk\" type=\"text\" value=\"" . $this->config['paging'] ."\" required>" );
 		$this->T_str_table( $this->lang['settings_admin'], $this->lang['settings_admin_desc'], "<input name=\"save_con[admin]\" class=\"edit bk\" type=\"text\" value=\"" . $this->config['admin'] ."\" required>" );
@@ -113,6 +117,30 @@ Class ADMIN extends ADMIN_THEME {
 		$content .= $this->foother();
 
 		return $content;
+	
+	}
+	
+	private function news() {
+		
+		$date = ( isset( $_COOKIE['bNewsDate'] ) and $_COOKIE['bNewsDate']>($this->_TIME - ( 24*60*60 )) ) ? $_COOKIE['bNewsDate'] : $this->_TIME - ( 24*60*60 ) ;
+		$title = $_COOKIE['bNewsDate'] ? $this->lang['main_news_1'] : $this->lang['main_news_2'];
+
+		// - get db
+		$invoice = $this->db->super_query( "SELECT SUM(invoice_get) as summ, count(*) as count FROM " . USERPREFIX . "_billing_invoice where invoice_get>'0' and invoice_date_pay>='".intval( $date )."'" );
+		$refund = $this->db->super_query( "SELECT SUM(refund_summa) as summ, count(*) as count FROM " . USERPREFIX . "_billing_refund where refund_date>='".intval( $date )."'" );
+
+		if( !$invoice['count'] and !$refund['count'] ) return false;
+		
+		return "
+			<div class=\"alert alert-info fade in\">
+			  <strong>{$title}</strong>
+			  <p style=\"padding: 5px\">
+			   ".
+			    ( $invoice[count] ? " - {$invoice[count]} {$this->pay_api->bf_declOfNum( $invoice[count], $this->lang['main_users'] )} {$this->lang['main_users_plus']} {$invoice[summ]} {$this->pay_api->bf_declOfNum( $invoice[summ] )}" : "" )
+			    .( $invoice[count] ? "<br />
+									  - {$refund[count]} {$this->pay_api->bf_declOfNum( $refund[count], $this->lang['main_users'] )} {$this->lang['main_users_refund']} {$refund[summ]} {$this->pay_api->bf_declOfNum( $refund[summ] )}" : "" )
+			    ."</p>
+			</div>";
 	
 	}
 	

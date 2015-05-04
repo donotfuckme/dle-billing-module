@@ -84,7 +84,7 @@ HTML;
 							</tr>
 							<tr>
 								<td></td>
-								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=refund">{$this->lang['statistics_main_4']}</a> ]</td>
+								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=Refund">{$this->lang['statistics_main_4']}</a> ]</td>
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_5']}</td>
@@ -96,7 +96,7 @@ HTML;
 							</tr>
 							<tr>
 								<td></td>
-								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=invoice">{$this->lang['statistics_main_7']}</a> ]</td>
+								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=Invoice">{$this->lang['statistics_main_7']}</a> ]</td>
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_8']}</td>
@@ -104,7 +104,7 @@ HTML;
 							</tr>
 							<tr>
 								<td></td>
-								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=users">{$this->lang['statistics_main_9']}</a> ]</td>
+								<td>[ <a class="status-info" href="{$PHP_SELF}?mod=billing&c=Users">{$this->lang['statistics_main_9']}</a> ]</td>
 							</tr>
 						</table>      
 						
@@ -182,7 +182,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = $plugins[$row['history_plugin']]['title'] ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[$row['history_plugin'].'_title'] ) ? $this->lang[$row['history_plugin'].'_title']: ucfirst( $title );
 			
 			$plugins_select .= "<div class=\"checkbox\">
@@ -350,6 +350,7 @@ HTML;
 		global $user_group;
 	
 		$paysys = $this->paysys_array();
+		$plugins = $this->plugins_array();
 	
 		if( iconv_strlen( $user ) < 3 ) $user = "";
 			
@@ -473,7 +474,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = ( $plugins[$row['history_plugin']]['title'] ) ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[strtolower( $row['history_plugin'] ).'_title'] ) ? $this->lang[strtolower( $row['history_plugin'] ).'_title']: $title;
 		
 			$row['SUM(history_plus)'] = $this->pay_api->bf_convert( $row['SUM(history_plus)'] );
@@ -595,7 +596,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = ( $plugins[$row['history_plugin']]['title'] ) ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[strtolower( $row['history_plugin'] ).'_title'] ) ? $this->lang[strtolower( $row['history_plugin'] ).'_title']: $title;
 		
 			$row['SUM(history_plus)'] = $this->pay_api->bf_convert( $row['SUM(history_plus)'] );

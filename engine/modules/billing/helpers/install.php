@@ -27,6 +27,7 @@ Class INSTALL extends ADMIN_THEME {
 		'status' => "0",
 		'page' => "billing",
 		'currency' => "",
+		'summ' => "100",
 		'paging' => "10",
 		'admin' => "",
 		'secret' => "",
