@@ -137,7 +137,7 @@ Class ADMIN extends ADMIN_THEME {
 			  <p style=\"padding: 5px\">
 			   ".
 			    ( $invoice[count] ? " - {$invoice[count]} {$this->pay_api->bf_declOfNum( $invoice[count], $this->lang['main_users'] )} {$this->lang['main_users_plus']} {$invoice[summ]} {$this->pay_api->bf_declOfNum( $invoice[summ] )}" : "" )
-			    .( $invoice[count] ? "<br />
+			    .( $refund[count] ? "<br />
 									  - {$refund[count]} {$this->pay_api->bf_declOfNum( $refund[count], $this->lang['main_users'] )} {$this->lang['main_users_refund']} {$refund[summ]} {$this->pay_api->bf_declOfNum( $refund[summ] )}" : "" )
 			    ."</p>
 			</div>";
