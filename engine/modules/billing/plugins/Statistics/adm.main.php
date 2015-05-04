@@ -72,11 +72,11 @@ HTML;
 						<table class="table table-normal">
 							<tr>
 								<td class="col-md-4 white-line">{$this->lang['statistics_main_1']}</td>
-								<td class="col-md-8 white-line">{$this->pay_api->bf_convert( $balance['summa'] )}{$this->pay_api->bf_declOfNum( $balance['summa'] )}</td>
+								<td class="col-md-8 white-line">{$this->pay_api->bf_convert( $balance['summa'] )} {$this->pay_api->bf_declOfNum( $balance['summa'] )}</td>
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_2']}</td>
-								<td>{$this->pay_api->bf_convert( $refund['summa'] )}{$this->pay_api->bf_declOfNum( $refund['summa'] )} | {$this->pay_api->bf_convert( $refund['commission'] )}{$this->pay_api->bf_declOfNum( $refund['commission'] )} - комиссия</td>
+								<td>{$this->pay_api->bf_convert( $refund['summa'] )} {$this->pay_api->bf_declOfNum( $refund['summa'] )} | {$this->pay_api->bf_convert( $refund['commission'] )}{$this->pay_api->bf_declOfNum( $refund['commission'] )} - комиссия</td>
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_3']}</td>
@@ -88,11 +88,11 @@ HTML;
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_5']}</td>
-								<td>{$this->pay_api->bf_convert( $invoice['summa'] )}{$this->pay_api->bf_declOfNum( $invoice['summa'] )}</td>
+								<td>{$this->pay_api->bf_convert( $invoice['summa'] )} {$this->pay_api->bf_declOfNum( $invoice['summa'] )}</td>
 							</tr>
 							<tr>
 								<td>{$this->lang['statistics_main_6']}</td>
-								<td>{$this->pay_api->bf_convert( $invoice_wait['summa'] )}{$this->pay_api->bf_declOfNum( $invoice_wait['summa'] )}</td>
+								<td>{$this->pay_api->bf_convert( $invoice_wait['summa'] )} {$this->pay_api->bf_declOfNum( $invoice_wait['summa'] )}</td>
 							</tr>
 							<tr>
 								<td></td>
