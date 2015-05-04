@@ -75,6 +75,7 @@ Class USER extends USER_THEME {
 		/* PAYSYS LIST */
 		$tpl = $this->load( "pay_select" );
 		$tpl_paysys = $this->T_preg_match( $tpl, '~\[paysys\](.*?)\[/paysys\]~is' );
+		$get_summ = $_GET['summ'] ? $this->pay_api->bf_convert( $_GET['summ'] ): $this->config['summ'];
 		$paysys = "";
 
 		if( count( $this->paysys_list() ) )
@@ -97,7 +98,8 @@ Class USER extends USER_THEME {
 			$paysys = $this->lang['pay_main_error'];
 		
 		$this->set_element_block( "paysys", $paysys );
-		$this->set_element( "{module_valuta}", $this->pay_api->bf_declOfNum( 10 ) );
+		$this->set_element( "{module_valuta}", $this->pay_api->bf_declOfNum( $get_summ ) );
+		$this->set_element( "{get_summ}", $get_summ );
 		$this->set_element( "{hash}", $this->hash() );
 
 		$this->set_element( "{content}", $this->load( "pay_select" ) );

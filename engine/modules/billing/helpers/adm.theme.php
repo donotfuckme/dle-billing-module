@@ -412,6 +412,8 @@ Class ADMIN_THEME extends MODEL {
 	
 	function header_end() {
 	
+		SetCookie("bNewsDate", $this->_TIME, $this->_TIME+( 24*60*60 ));
+	
 		return "		</form>
 					</div>
 				</div>";

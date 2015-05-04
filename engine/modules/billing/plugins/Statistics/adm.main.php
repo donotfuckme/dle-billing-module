@@ -182,7 +182,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = $plugins[$row['history_plugin']]['title'] ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[$row['history_plugin'].'_title'] ) ? $this->lang[$row['history_plugin'].'_title']: ucfirst( $title );
 			
 			$plugins_select .= "<div class=\"checkbox\">
@@ -350,6 +350,7 @@ HTML;
 		global $user_group;
 	
 		$paysys = $this->paysys_array();
+		$plugins = $this->plugins_array();
 	
 		if( iconv_strlen( $user ) < 3 ) $user = "";
 			
@@ -473,7 +474,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = ( $plugins[$row['history_plugin']]['title'] ) ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[strtolower( $row['history_plugin'] ).'_title'] ) ? $this->lang[strtolower( $row['history_plugin'] ).'_title']: $title;
 		
 			$row['SUM(history_plus)'] = $this->pay_api->bf_convert( $row['SUM(history_plus)'] );
@@ -595,7 +596,7 @@ HTML;
 		
 		while ( $row = $this->db->get_row() ) {
 
-			$title = ( $plugins[$row['history_plugin']]['title'] ) ? $plugins[$row['history_plugin']]['title']: $row['history_plugin'];
+			$title = ( $plugins[ucfirst($row['history_plugin'])]['title'] ) ? $plugins[ucfirst($row['history_plugin'])]['title']: $row['history_plugin'];
 			$title = ( $title==$row['history_plugin'] and $this->lang[strtolower( $row['history_plugin'] ).'_title'] ) ? $this->lang[strtolower( $row['history_plugin'] ).'_title']: $title;
 		
 			$row['SUM(history_plus)'] = $this->pay_api->bf_convert( $row['SUM(history_plus)'] );
