@@ -3,7 +3,7 @@
      <div class="bt_title">1. Способ пополнения:</div>
 
 		[paysys]
-    	<div class="bt_paysys" id="{paysys_name}" onClick="bs_paysys('{paysys_name}', '{paysys_convert}', '{paysys_valuta}', '{paysys_minimum}')">
+    	<div class="bt_paysys" id="{paysys_name}" onClick="bs_paysys('{paysys_name}', '{paysys_convert}', '{paysys_valuta}', '{paysys_minimum}', '{module_valuta}')">
     	
             <p>	
                  <img src="{paysys_icon}" title="{paysys_title}" style="float: left; margin-right: 3px">
