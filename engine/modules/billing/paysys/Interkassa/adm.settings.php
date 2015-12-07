@@ -32,6 +32,7 @@ Class PAYSYS extends ADMIN_THEME {
 			     <form name="payment" method="post" id="paysys_form" action="https://sci.interkassa.com/"> 
 					  <input type="hidden" name="ik_co_id" value="'.$config['login'].'" /> 
 					  <input type="hidden" name="ik_pm_no" value="'.$id.'" /> 
+					  <input type="hidden" name="ik_cur" value="USD" /> 
 					  <input type="hidden" name="ik_am" value="'.$invoice['invoice_pay'].'" /> 
 					  <input type="hidden" name="ik_desc" value="'.$desc.'" /> 
 					  <input type="submit" class="bs_button" value="Оплатить"> 
