@@ -44,7 +44,7 @@ function bs_pay( form ) {
 	if( !bs_pay_sys )
 		error = "Выберите способ оплаты";
 
-	if( $("#bs_summa").val() < bs_pay_minimum )
+	if( parseFloat($("#bs_summa").val()) < parseFloat(bs_pay_minimum) )
 		error = "Минимум для "+bs_pay_sys+" - "+bs_pay_minimum+" "+bs_pay_currency;
 		
 	if( error ) {
